@@ -1,27 +1,49 @@
-# Grooming, Beauty & Fitness — Android starter app
+# GBF — Grooming, Beauty & Fitness
 
-An offline personal routine tracker. It has **Grooming**, **Beauty**, **Fitness**, and **Outfits** tabs, completion buttons, last-completed dates, current progress and local reminders. No account or internet permission is required.
+An offline personal routine tracker for Android. It has **Grooming**, **Beauty**, **Fitness** and **Outfits** tabs, completion buttons, next-due dates, progress and local reminders. No account or internet permission is needed.
 
 ## Build on Windows 11
 
-1. Extract the project ZIP. Open its extracted folder (the one containing `settings.gradle`) in Android Studio.
-2. Let Android Studio download the Android Gradle plugin and Android SDK platform 35 if prompted. Select JDK 17 if asked. This project does not bundle a Gradle wrapper, so install Gradle 8.9 or use Android Studio's configured Gradle distribution. A GitHub Actions workflow also builds an APK after pushing to `main`.
-3. Select **Build > Build APK(s)**. Android Studio places the debug APK at `app/build/outputs/apk/debug/app-debug.apk`.
-4. Connect your Android phone with USB debugging enabled and use **Run**, or transfer the APK to the phone and install it after allowing installation from that source.
-5. Grant notification permission when the app first opens. Reminders use your phone's local time and are rescheduled after a restart.
+The project includes a Gradle wrapper (Gradle 8.13, Android Gradle Plugin 8.7.3, compile/target SDK 35, min SDK 26 / Android 8.0).
 
-## Included routine
+- **Android Studio:** open this folder (the one containing `settings.gradle`), let it sync, then use **Build > Build APK(s)**.
+- **Command line:** with `JAVA_HOME` pointing at Android Studio's bundled JDK:
 
-- Haircut: every 30 days after marking complete; nail trim and gentle skin-care task: every 7 days.
-- Daily: optional honey, oats, ten almonds, one egg, two fruits, two dates, an affordable protein serving, and 3,000 steps **or** ten minutes of treadmill/cycling.
-- A task starts due until first marked. A daily task resets on the next calendar day; a 7- or 30-day task becomes due after that many calendar days. Marking it again restarts its interval.
-- Reminders run at the preset times shown on each card. Android may delay inexact alarms to save battery. Completion and reminder settings are stored only on this device; deleting app data loses them.
-- Outfits: add shirts, trousers, T-shirts and night pants with their colors. The app suggests shirt + trousers and T-shirt + night pants pairs using simple color rules. Tap Remove to delete an item. Clothing stays on this device.
+  ```powershell
+  $env:JAVA_HOME = "C:\Program Files\Android\Android Studio\jbr"
+  .\gradlew.bat assembleDebug
+  ```
 
-## Current limitations and health notes
+The debug APK is written to `app/build/outputs/apk/debug/app-debug.apk`. `local.properties` (SDK path) is created by Android Studio and is not committed. A GitHub Actions workflow also builds the APK after each push to `main`.
 
-This first version does not count phone steps, edit tasks or notification times, export data, sync between devices, analyze clothing photos, or include the unclear spoken item after “honey.” Tap the activity button yourself after walking, cycling or using a treadmill. Building an APK requires Android Studio or the included GitHub Actions workflow; this workspace has neither Android SDK nor Gradle.
+Install on a phone: copy the APK across and open it, allowing installation from that source. Grant notification permission when the app first opens.
 
-Honey is optional and is a source of added/free sugar, not a protein food or a hair-growth treatment. De-tan treatments can irritate skin: the app labels this as gentle skin care. If hair loss is noticeable or persistent, a clinician can assess causes; take iron/zinc/biotin supplements only when a deficiency is established. Adjust food reminders to allergies and medical advice.
+## Routine
+
+| Section | Task | Repeats | Reminder |
+|---|---|---|---|
+| Grooming | Haircut | every 30 days | 10:00 |
+| Grooming | Trim nails | every 7 days | 18:00 |
+| Beauty | De-tan / skin care | every 7 days | 18:00 |
+| Fitness · Diet | Honey + kalonji (empty stomach) | daily | 06:30 |
+| Fitness · Diet | 10 soaked almonds (badam) | daily | 07:30 |
+| Fitness · Diet | Oats for breakfast | daily | 08:30 |
+| Fitness · Diet | 1 egg | daily | 13:00 |
+| Fitness · Diet | Protein serving (dal, chana, rajma, soya, paneer, curd, sprouts) | daily | 13:30 |
+| Fitness · Diet | 2 fruits (guava, orange, apple, banana) | daily | 16:00 |
+| Fitness · Diet | 2 dates | daily | 16:30 |
+| Fitness · Exercise | 3,000+ steps **or** 10 min treadmill/cycling | daily | 18:30 |
+
+- A task is due until you first mark it. Daily tasks reset the next calendar day. 7- and 30-day tasks show their next due date and become due again after that many days. Marking a task again restarts its interval.
+- A reminder fires at its time only while the task is due. Android may delay these alarms to save battery. Reminders are rescheduled after a restart or a time/time-zone change.
+- The Fitness tab has an expandable **Best affordable protein for hair growth** guide: eggs, soya chunks, dal, chana/rajma, sprouts, peanuts, curd/paneer, fish/chicken; seeds, greens and vitamin-C fruit as helpers.
+- Outfits: add shirts, trousers, T-shirts and night pants with their colours, and the app suggests pairs using simple colour rules.
+- All data stays on this device. Clearing app data deletes it.
+
+## Limitations and health notes
+
+This version does not count steps automatically, edit tasks or reminder times, export data or sync between devices. Tap the exercise task yourself after walking, cycling or using a treadmill.
+
+Honey is a source of added sugar, so keep it to about a teaspoon. Kalonji (nigella / black seed) is a traditional remedy, and a small pinch is enough. Neither is a proven hair-growth treatment. De-tan products can irritate skin. If hair loss is heavy or persistent, see a clinician, and take iron, zinc, biotin or vitamin D supplements only when a test shows a deficiency. Adjust food items for allergies and medical advice.
 
 Sources: [American Academy of Dermatology — hair loss diagnosis](https://www.aad.org/public/diseases/hair-loss/treatment/diagnosis-treat), [NHS — balanced diet](https://www.nhs.uk/live-well/eat-well/how-to-eat-a-balanced-diet/eating-a-balanced-diet/).
