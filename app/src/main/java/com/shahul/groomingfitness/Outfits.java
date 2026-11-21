@@ -37,6 +37,7 @@ final class Outfits {
         } catch(Exception ignored) { /* Bad local data is ignored. */ }
         return items;
     }
+    static int count(Context c) { return load(c).size(); }
     private static int index(String[] options,String value) {
         for(int i=0;i<options.length;i++) if(options[i].equals(value)) return i;
         return -1;
@@ -53,7 +54,8 @@ final class Outfits {
         List<Garment> items=load(activity);
         TextView intro=text(activity,"Add the clothes you own, then choose an outfit. Match a bright color with a neutral for an easy combination.",15);
         content.addView(intro);
-        Button add=new Button(activity);add.setText("Add clothing");add.setAllCaps(false);content.addView(add);
+        Button add=Ui.lavender(new Button(activity));add.setText("+  Add clothing");
+        LinearLayout.LayoutParams al=new LinearLayout.LayoutParams(-1,-2);al.setMargins(0,0,0,dp(activity,6));content.addView(add,al);
         add.setOnClickListener(v->addDialog(activity,refresh));
         if(items.isEmpty()) { content.addView(text(activity,"Your wardrobe is empty. Add a shirt and trousers, or a T-shirt and night pants.",15));return; }
         content.addView(text(activity,"My wardrobe",19));
@@ -63,7 +65,8 @@ final class Outfits {
             View swatch=new View(activity);swatch.setBackgroundColor(SWATCHES[index(COLORS,item.color)]);
             LinearLayout.LayoutParams sw=new LinearLayout.LayoutParams(dp(activity,22),dp(activity,22));sw.setMargins(0,0,dp(activity,10),0);row.addView(swatch,sw);
             TextView title=text(activity,item.label(),15);row.addView(title,new LinearLayout.LayoutParams(0,-2,1));
-            Button remove=new Button(activity);remove.setText("Remove");remove.setAllCaps(false);row.addView(remove);
+            Button remove=Ui.lavenderDanger(new Button(activity));remove.setText("Remove");
+            LinearLayout.LayoutParams rl=new LinearLayout.LayoutParams(-2,-2);rl.setMargins(0,dp(activity,4),0,dp(activity,4));row.addView(remove,rl);
             remove.setOnClickListener(v->new AlertDialog.Builder(activity).setTitle("Remove clothing?")
                 .setMessage(item.label()).setNegativeButton("Cancel",null).setPositiveButton("Remove",(d,w)->{
                     List<Garment> current=load(activity);if(position<current.size()){current.remove(position);save(activity,current);refresh.run();}
