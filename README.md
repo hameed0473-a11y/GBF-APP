@@ -20,6 +20,10 @@ Install on a phone: copy the APK across and open it, allowing installation from 
 
 ## Routine
 
+You can add and delete tasks in every category. Use **+ Add … task** at the bottom of Grooming or Beauty, or **+ Add exercise** / **+ Add diet item** in Fitness. Each new task has a name, optional details, a repeat interval (1–365 days, with Daily / 7 / 15 / 30 shortcuts) and a reminder time. **Delete** on a task card removes the task, its reminder and its completion history after you confirm. Tasks in each section are listed in reminder-time order.
+
+The app starts with this default routine, and every item in it can be deleted:
+
 | Section | Task | Repeats | Reminder |
 |---|---|---|---|
 | Grooming | Haircut | every 30 days | 10:00 |
@@ -42,7 +46,7 @@ Install on a phone: copy the APK across and open it, allowing installation from 
 
 ## Limitations and health notes
 
-This version does not count steps automatically, edit tasks or reminder times, export data or sync between devices. Tap the exercise task yourself after walking, cycling or using a treadmill.
+This version does not count steps automatically, edit an existing task (delete it and add it again instead), restore the default tasks after deleting them, export data or sync between devices. Tap the exercise task yourself after walking, cycling or using a treadmill.
 
 Honey is a source of added sugar, so keep it to about a teaspoon. Kalonji (nigella / black seed) is a traditional remedy, and a small pinch is enough. Neither is a proven hair-growth treatment. De-tan products can irritate skin. If hair loss is heavy or persistent, see a clinician, and take iron, zinc, biotin or vitamin D supplements only when a test shows a deficiency. Adjust food items for allergies and medical advice.
 
